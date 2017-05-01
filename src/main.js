@@ -1,3 +1,4 @@
 require('./main.scss')
 
-console.log('hello world!')
+import SierpinskiEngine from './sierpinski/sierpinski-engine'
+const sierpinskiEngine = new SierpinskiEngine()
