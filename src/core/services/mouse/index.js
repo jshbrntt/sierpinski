@@ -1,3 +1,4 @@
+import window from 'window'
 import { EventDispatcher, Vector2 } from 'three'
 import MouseEvent from './mouse-event'
 
@@ -13,8 +14,8 @@ export default class Mouse extends EventDispatcher {
     window.addEventListener('mousewheel', this.onMouseWheel.bind(this), false)
   }
   update (event) {
-    this._position.x = (event.clientX / window.innerWidth) * 2 - 1
-    this._position.y = -(event.clientY / window.innerHeight) * 2 + 1
+    this._position.x = event.clientX
+    this._position.y = event.clientY
   }
   onClick (event) {
     this.update(event)
@@ -36,7 +37,7 @@ export default class Mouse extends EventDispatcher {
   }
   onMouseWheel (event) {
     this.update(event)
-    this.dispatchEvent({ type: MouseEvent.WHEEL, delta: { x: event.wheelDeltaX, y: event.wheelDeltaY }})
+    this.dispatchEvent({ type: MouseEvent.WHEEL, delta: { x: event.wheelDeltaX, y: event.wheelDeltaY } })
   }
   get x () {
     return this._position.x
