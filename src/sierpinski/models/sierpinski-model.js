@@ -8,6 +8,9 @@ export default class SierpinskiModel extends Model {
     this._width = width
     this._height = TriangleModel.calculateHeight(this._width)
     this._depth = depth
+    this.updatePositions()
+  }
+  updatePositions () {
     this._positions = SierpinskiModel.calculatePositions(
       this._width,
       this._height,
@@ -39,8 +42,10 @@ export default class SierpinskiModel extends Model {
     ) : offsets
   }
   set depth (value) {
-    this._depth = value
-    return this._depth
+    if (value !== this._depth) {
+      this._depth = value
+      this.updatePositions()
+    }
   }
   get depth () {
     return this._depth

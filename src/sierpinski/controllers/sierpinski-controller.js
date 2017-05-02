@@ -24,6 +24,7 @@ export default class SierpinskiController extends Controller {
         this._startViewPosition.y - (this._mouse.position.y - this._startMousePosition.y),
         0
       )
+      if (!this.view.rendering) this.view.render()
     }
   }
   onMouseUp (event) {
@@ -41,5 +42,8 @@ export default class SierpinskiController extends Controller {
     this._view.worldToLocal(mouse)
     mouse.multiplyScalar(delta)
     this._view.position.sub(mouse)
+    let depth = Math.floor(Math.sqrt(this._view.scale.x))
+    this.model.depth = depth + 5
+    if (!this.view.rendering) this.view.render()
   }
 }

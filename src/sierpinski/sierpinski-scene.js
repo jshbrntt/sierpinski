@@ -7,7 +7,7 @@ export default class SierpinskiScene extends Scene {
   constructor (context) {
     super(context)
     let width = 800
-    let depth = 7
+    let depth = 6
     this._model = new SierpinskiModel(width, depth)
     this._view = new SierpinskiView(this._model)
     this._controller = new SierpinskiController(this._model, this._view)
