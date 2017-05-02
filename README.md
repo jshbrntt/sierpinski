@@ -1,5 +1,9 @@
 # Sierpinski triangle explorer
 
+## Demo
+
+https://synthecypher.github.io/sierpinski/
+
 ## Code Style
 
 The code written for the project follows the [JavaScript Standard Style][code-style].
