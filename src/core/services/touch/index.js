@@ -1,3 +1,4 @@
+import window from 'window'
 import { EventDispatcher, Vector2 } from 'three'
 import TouchEvent from './touch-event'
 
