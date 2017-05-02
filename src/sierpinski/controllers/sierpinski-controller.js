@@ -1,3 +1,5 @@
+import window from 'window'
+import { Vector3 } from 'three'
 import Services from './../../core/services'
 import Controller from './../../core/mvc/controller'
 import MouseEvent from './../..//core/services/mouse/mouse-event'
@@ -31,5 +33,13 @@ export default class SierpinskiController extends Controller {
   onMouseWheel (event) {
     let delta = event.delta.y / 1000
     this._view.scale.addScalar(delta)
+    let mouse = new Vector3(
+      this._mouse.position.x - (window.innerWidth / 2),
+      -(this._mouse.position.y - (window.innerHeight / 2)),
+      0
+    )
+    this._view.worldToLocal(mouse)
+    mouse.multiplyScalar(delta)
+    this._view.position.sub(mouse)
   }
 }
