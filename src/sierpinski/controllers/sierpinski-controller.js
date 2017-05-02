@@ -31,7 +31,7 @@ export default class SierpinskiController extends Controller {
     this._startViewPosition = null
   }
   onMouseWheel (event) {
-    let delta = event.delta.y / 1000
+    let delta = this._view.scale.x * event.delta.y / 1000
     this._view.scale.addScalar(delta)
     let mouse = new Vector3(
       this._mouse.position.x - (window.innerWidth / 2),
