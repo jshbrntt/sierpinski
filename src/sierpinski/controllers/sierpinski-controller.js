@@ -12,6 +12,7 @@ export default class SierpinskiController extends Controller {
     this._mouse.addEventListener(MouseEvent.DOWN, this.onMouseDown.bind(this))
     this._mouse.addEventListener(MouseEvent.MOVE, this.onMouseMove.bind(this))
     this._mouse.addEventListener(MouseEvent.UP, this.onMouseUp.bind(this))
+    this._startDepth = this.model.depth
   }
   onMouseDown (event) {
     this._startMousePosition = this._mouse.position.clone()
@@ -42,8 +43,11 @@ export default class SierpinskiController extends Controller {
     this._view.worldToLocal(mouse)
     mouse.multiplyScalar(delta)
     this._view.position.sub(mouse)
-    let depth = Math.floor(Math.sqrt(this._view.scale.x))
-    this.model.depth = depth + 5
-    if (!this.view.rendering) this.view.render()
+
+    let depth = this._startDepth + Math.floor(Math.log(this._view.scale.x) / Math.log(2))
+    if (depth !== this.view.depth) {
+      this.model.depth = depth
+      if (!this.view.rendering) this.view.render()
+    }
   }
 }
